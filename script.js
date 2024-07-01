@@ -1,64 +1,55 @@
 $(document).ready(function () {
   $(window).scroll(function () {
-    // ------------------------------ sticky navbar on scroll script ------------------------------ //
-    if (this.scrollY > 20) {
+    // Sticky navbar on scroll
+    if ($(this).scrollTop() > 20) {
       $(".navbar").addClass("sticky");
     } else {
       $(".navbar").removeClass("sticky");
     }
 
-    // ------------------------------ scroll-up button show/hide script ------------------------------ //
-    if (this.scrollY > 500) {
+    // Scroll-up button show/hide
+    if ($(this).scrollTop() > 500) {
       $(".scroll-up-btn").addClass("show");
     } else {
       $(".scroll-up-btn").removeClass("show");
     }
   });
-1
-  // ------------------------------ slide-up script ------------------------------ //
 
+  // Slide-up script
   $(".scroll-up-btn").click(function () {
-    $("html").animate({ scrollTop: 0 });
-    // ------------------------------ removing smooth scroll on slide-up button click ------------------------------ //
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    // Disable smooth scroll temporarily
     $("html").css("scrollBehavior", "auto");
   });
 
+  // Smooth scroll on menu items click
   $(".navbar .menu li a").click(function () {
-    // ------------------------------ Smooth scroll on Menu Items click ------------------------------ //
-
-    $("html").css("scrollBehavior", "smooth");
+    $("html, body").animate({
+      scrollTop: $($(this).attr("href")).offset().top
+    }, 500);
+    return false; // Prevent default anchor behavior
   });
 
-  // ------------------------------ Toggle Navbar ------------------------------ //
-
+  // Toggle Navbar
   $(".menu-btn").click(function () {
     $(".navbar .menu").toggleClass("active");
     $(".menu-btn i").toggleClass("active");
   });
 
-  // ------------------------------ Typing Text Animation ------------------------------ //
-
+  // Typing Text Animation
   var typed = new Typed(".typing", {
-    strings: ["Frontend Dev"],
+    strings: ["Frontend Developer"],
     typeSpeed: 100,
     backSpeed: 60,
     loop: true
   });
 
-  var typed = new Typed(".typing-2", {
-    strings: ["Frontend Dev"],
-    typeSpeed: 100,
-    backSpeed: 60,
-    loop: true
-  });
-
-  // ------------------------------ Owl Carousel ------------------------------ //
-
+  // Owl Carousel
   $(".carousel").owlCarousel({
     margin: 20,
     loop: true,
     autoplay: true,
-    autoplayTimeOut: 2000,
+    autoplayTimeout: 2000,
     autoplayHoverPause: true,
     responsive: {
       0: {
